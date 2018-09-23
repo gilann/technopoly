@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-include 'shop.html';
 $conn=new mysqli("localhost", "root", "", "technopoly");
 if($conn->connect_error)
 {
@@ -24,6 +23,11 @@ else{
 $qid=array_keys($_POST);
 $ans=$_POST['option'];
 #print_r($_POST);
+$sql="delete from market where qid='$qid[1]';";
+if(($i1=$conn->query($sql))== false)
+{
+    echo $conn->error;
+}
 $sql="select * from question where qid='$qid[1]';";
 if(($i1=$conn->query($sql))== false)
 {
@@ -50,14 +54,7 @@ else{
             echo 'alert("wrong answer")';
             echo '</script>';
         }
-        $sq3="update question
-              set status=1
-              where qid='$qid[1]'";
-        if(($i3=$conn->query($sq3))== false)
-        {
-            echo $conn->error;
-        }
-        header("loaction:shop.html");
+        header('Refresh:0; url=shop.html');
     }
 }
 ?>
