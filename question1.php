@@ -88,7 +88,7 @@ else {
             {
                 echo $conn->error;
             }
-    }
+        }
     }
     $sq3="update login set balance='$bal'-'$cp' where uname='$uname';";
 
@@ -157,19 +157,31 @@ else {
                                 <input type='radio' name='option' value='4' required><?php echo $option4 ?>
                             </label> <br> <br>
 
-                            <input class="btn btn-lg btn-secondary question-btn " id="<?php echo $qid[0] ?>" style="color: #ffffff;background-color: #21c5ca;width: 25%;" type='submit' name="<?php echo $qid[0] ?>" value='Submit'/>
+                            <input class="btn btn-lg btn-secondary question-btn " style="color: #ffffff;background-color: #21c5ca;width: 25%;" type='submit' onclick="verify(this.id)" name="<?php echo $qid[0] ?>" value='Submit'/>
                     </form>
-                            <a href='sell.php?var=<?php echo $qid[0] ?>'><input type="button" class="btn btn-lg btn-secondary question-btn " style="color: #ffffff;background-color: #21c5ca;width: 25%;" value="Sell"></></a>
 
 
-                        </div>
 
                 </div>
+
             </div>
         </div>
-        <div class="col"></div>
     </div>
+    <div class="col"></div>
 </div>
+</div>
+<script>
+    function  verify(y) {
+        var x='@'
+        x=document.getElementsByName('option');
+        if(x.match('@')){
+            document.getElementById(y).disabled=true;
+        }
+        else{
+            document.getElementById(y).disabled=false;
+        }
+    }
+</script>
 
 
 </body>
